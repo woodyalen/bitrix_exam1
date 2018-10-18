@@ -26,12 +26,12 @@ $this->setFrameMode(true);
 					<div class="photo-block">
 					<?
 					//изменили размер.
-	// 				$newWidth = 39;
-	// 				$newHeight = 39;
-	// 				$renderImage = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"], Array("width" => $newWidth, "height" => $newHeight));
-	// //echo "<pre>", var_dump($renderImage), "</pre>"
+					$newWidth = 39;
+					$newHeight = 39;
+					$renderImage = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"], Array("width" => $newWidth, "height" => $newHeight));
+	//echo "<pre>", var_dump($renderImage), "</pre>"
 					
-	// 				echo CFile::ShowImage($renderImage['src'], $newWidth, $newHeight, "border=0", "", true);?>
+					echo CFile::ShowImage($renderImage['src'], $newWidth, $newHeight, "border=0", "", true);?>
 					 <?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arItem["PREVIEW_PICTURE"])):?>
 							<?if(!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])):?>
 								<a href="<?=$arItem["DETAIL_PAGE_URL"]?>">
@@ -47,7 +47,7 @@ $this->setFrameMode(true);
 					</div>
 					<div class="name-block"><a href=""><?if($arParams["DISPLAY_NAME"]!="N" && $arItem["NAME"]):?>
 			<?if(!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])):?>
-				<a href="<?echo $arItem["DETAIL_PAGE_URL"]?>"><?echo $arItem["NAME"]?></a>
+				<a href="/rew/index.php?ELEMENT_ID=<?echo $arItem["ID"]?>"><?echo $arItem["NAME"]?></a>
 			<?else:?>
 				<?echo $arItem["NAME"]?>
 			<?endif;?>

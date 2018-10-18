@@ -105,7 +105,7 @@
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
-		"PARENT_SECTION" => "",
+		"PARENT_SECTION" => "rew",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "150",
 		"PROPERTY_CODE" => array(
