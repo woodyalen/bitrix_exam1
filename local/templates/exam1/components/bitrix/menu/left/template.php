@@ -1,7 +1,10 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?if (!empty($arResult)):?>
+
+<?//echo "<pre>", var_dump($arResult), "</pre>"?>
+
 <div class="side-block side-menu">
-	<div class="title-block"><?=GetMessage("T_EXAM_MENU_TITLE")?></div>
+	<div class="title-block <?$APPLICATION->ShowProperty("menu_color")?>"><?=GetMessage("T_EXAM_MENU_TITLE")?></div>
 	<div class="menu-block">
 		<ul>
 		<?
@@ -16,7 +19,7 @@
 			<?endif?>
 			
 		<?endforeach?>
-	</ul>
+		</ul>
 	</div>
 </div> 
 <?endif?>

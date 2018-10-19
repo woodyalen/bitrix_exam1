@@ -55,6 +55,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Опросы", 
+		"/oprosy/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
