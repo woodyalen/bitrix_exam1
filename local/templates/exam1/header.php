@@ -29,6 +29,7 @@ IncludeTemplateLangFile(__FILE__);
         <!-- header -->
         <header class="header">
             <div class="inner-wrap">
+				<div><a href="<?=SITE_DIR?>test.php">test.php</a></div>
                 <div class="logo-block"><a href="/" class="logo">Мебельный магазин</a>
                 </div>
                 <div class="main-phone-block">

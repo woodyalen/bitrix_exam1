@@ -18,7 +18,7 @@
 		"MENU_CACHE_GET_VARS" => array(
 		),
 		"MENU_CACHE_TIME" => "3600",
-		"MENU_CACHE_TYPE" => "N",
+		"MENU_CACHE_TYPE" => "Y",
 		"MENU_CACHE_USE_GROUPS" => "Y",
 		"ROOT_MENU_TYPE" => "left",
 		"USE_EXT" => "Y"
@@ -29,10 +29,15 @@
                     
                     <!-- side anonse -->
                     
-                            <?$APPLICATION->IncludeComponent("bitrix:main.include", "include", Array(
-	"AREA_FILE_SHOW" => "sect",	// Показывать включаемую область
-		"AREA_FILE_SUFFIX" => "inctemp",	// Суффикс имени файла включаемой области
-		"EDIT_TEMPLATE" => "",	// Шаблон области по умолчанию
+                            <?$APPLICATION->IncludeComponent(
+	"bitrix:main.include", 
+	"include", 
+	array(
+		"AREA_FILE_SHOW" => "sect",
+		"AREA_FILE_SUFFIX" => "inctemp",
+		"EDIT_TEMPLATE" => "",
+		"COMPONENT_TEMPLATE" => "include",
+		"AREA_FILE_RECURSIVE" => "Y"
 	),
 	false
 );?>
