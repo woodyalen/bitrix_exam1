@@ -1,88 +1,5 @@
-<?
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("тест");
-?>
-
-<?
-    // TODO: В рамках учебной задачи необходимо реализовать простую сущность из нескольких полей (ID, Название, Файл (множественное), Пользователь). Вывести ее для редактирования и списка (все поля нужно добавить в фильтрацию)
-
-    use Bitrix\Main\Entity;
-    use Bitrix\Main\ORM\Fields\Relations\Reference;
-    use Bitrix\Main\ORM\Query\Join;
-    use Bitrix\Main;
-
-
-// Описываем необходимую сущность
-/**
- * Класс для описания сущности
- */
-class ArchiveItemTable extends Entity\DataManager
-{
-    public static function getTableName()
-    {
-        return 'my_archive_items';
-    }
-    public static function getMap()
-    {
-        return [
-            // ID
-            new Entity\IntegerField('ID', ['primary' => true, 'autocomplete' => true]),
-            // Название
-            new Entity\StringField('NAME'),
-            // Файл При типе данных enum нужжно задавать список в параметрах.
-            (new Entity\StringField('FILE_ID')),
-            // Пользователь FIXME: Неуверен в типе поля.
-            new Entity\StringField('USER'),
-            // Создаем зависимость.
-            (new Reference(
-                'FILE',
-                ArchiveFileTable::class,
-                Join::on('this.FILE_ID', 'ID')
-            ))
-            ->configureJoinType('inner')
-        ];
-    }
-}
-
-class ArchiveFileTable extends Entity\DataManager
-{
-    public static function getTableName()
-    {
-        return 'my_archive_files';
-    }
-    public static function getMap()
-    {
-        return [
-            new Entity\IntegerField('ID', ['primary' => true, 'autocomplete' => true]),
-            new Entity\StringField('NAME'),
-            new Entity\stringField('PATH')
-        ];
-    }
-}
-
-
-
-// Создаем таблицу в БД
-echo "<pre>", var_export(ArchiveItemTable::getEntity()), "</pre>";//->createDBTable();
-
-// Добавляем в таблицу объекты сущности.
-//$item = ArchiveItemTable::add(['NAME' => "User Test", 'FILE_ID' => '14', 'USER' => 'TEST']);
-//var_dump($item);
-// $result = ArchiveItemTable::getByPrimary(1) -> fetchObject();
-
-$params = ['limit' => 3];
-
-$result = ArchiveItemTable::getList() -> fetchCollection();
-
-
-// $resultList = [];
-// while($result = ArchiveItemTable::getList() -> fetchObject())
-//     $resultList[] = $result;
-
-
-
-//echo "<pre>", print_r($result), "</pre>";
 
 use \Bitrix\Iblock\PropertyEnumerationTable;
 use Bitrix\Main\Grid\Options as GridOptions;
@@ -255,5 +172,7 @@ $APPLICATION->IncludeComponent(
     ),
     false
 );
+
+
+echo "<pre>", var_dump($arResult), "</pre>";
 ?>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
