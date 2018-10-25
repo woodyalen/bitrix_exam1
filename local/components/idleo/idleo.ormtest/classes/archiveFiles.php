@@ -1,4 +1,9 @@
 <?
+use Bitrix\Main\Entity;
+use Bitrix\Main\Entity\DataManager;
+use Bitrix\Main\ORM\Fields\Relations\Reference;
+use Bitrix\Main\ORM\Query\Join;
+use Bitrix\Main;
 /**
  * Класс сущности 
  */

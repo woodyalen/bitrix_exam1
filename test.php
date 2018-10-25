@@ -6,8 +6,8 @@ $APPLICATION->SetTitle("тест");
 
 <?
     // TODO: В рамках учебной задачи необходимо реализовать простую сущность из нескольких полей (ID, Название, Файл (множественное), Пользователь). Вывести ее для редактирования и списка (все поля нужно добавить в фильтрацию)
-
     use Bitrix\Main\Entity;
+    use Bitrix\Main\Entity\DataManager;
     use Bitrix\Main\ORM\Fields\Relations\Reference;
     use Bitrix\Main\ORM\Query\Join;
     use Bitrix\Main;
@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("тест");
 /**
  * Класс для описания сущности
  */
-class ArchiveItemTable extends Entity\DataManager
+class ArchiveItemTable extends DataManager
 {
     public static function getTableName()
     {
@@ -45,7 +45,7 @@ class ArchiveItemTable extends Entity\DataManager
     }
 }
 
-class ArchiveFileTable extends Entity\DataManager
+class ArchiveFileTable extends DataManager
 {
     public static function getTableName()
     {
