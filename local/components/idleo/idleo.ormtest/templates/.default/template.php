@@ -20,7 +20,7 @@ $nav->allowAllRecords(true)
 $filterOption = new Bitrix\Main\UI\Filter\Options($list_id);
 $filterData = $filterOption->getFilter([]);
 $filter = [];
-var_dump($filterData);
+//var_dump($filterData);
 $ui_filter = [
 	['id' => 'ID', 'name' => 'ID', 'type'=>'integer', 'default' => true],
 	['id' => 'NAME', 'name' => 'Название', 'type'=>'text', 'default' => true],
@@ -38,7 +38,7 @@ foreach ($filterData as $k => $v) {
 }
 if($filter['NAME'] == '') $filter['NAME'] = "%" . $filterData['FIND'] . "%";
 
-var_dump($filter);
+//var_dump($filter);
 
 $res = ArchiveItemTable::getList([
 	'filter' => $filter,
@@ -78,12 +78,15 @@ $columns[] = ['id' => 'NAME', 'name' => 'Название', 'sort' => 'NAME', 'd
 $columns[] = ['id' => 'FILE_ID', 'name' => 'Идентификатор файла', 'type' => 'string', 'default' => true];
 $columns[] = ['id' => 'USER', 'name' => 'Пользователь', 'type' => 'string', 'default' => true];
 
+//echo "<pre>", var_dump($res->fetchAll()), "</pre>";
+//echo "<pre>", var_dump($arResult), "</pre>";
+
 foreach ($res->fetchAll() as $row) {
     $list[] = [
         'data' => [
             "ID" => $row['ID'],
             "NAME" => $row['NAME'],
-            "FILE_ID" => $row['FILE_ID'],
+            "FILE_ID" => $arResult[$row['ID']],
             "USER" => $row['USER'],
         ],
         'actions' => [
@@ -94,7 +97,7 @@ foreach ($res->fetchAll() as $row) {
             ], [
                 'text' => 'Редактировать',
                 'default' => 'true',
-                'onclick' => 'BX.adminPanel.Redirect([], \"/bitrix/admin/perfmon_row_edit.php?table_name=my_archive_items&pk%5BID%5D=' . $row["ID"] . '")',
+                'onclick' => 'document.location.href = "http://' . SITE_SERVER_NAME . '/bitrix/admin/perfmon_row_edit.php?lang=ru&table_name=my_archive_items&pk%5BID%5D='.$row['ID']. '"'//'alert('. $row['ID'] .')'//'BX.adminPanel.Redirect([], \"/bitrix/admin/perfmon_row_edit.php?table_name=my_archive_items&pk%5BID%5D=' . $row["ID"] . '")',
 //                 return [{'DEFAULT':true,'GLOBAL_ICON':'adm-menu-edit','DEFAULT':true,'TEXT':'Изменить','ONCLICK':'BX.adminPanel.Redirect([], \'perfmon_row_edit.php?lang=ru&table_name=my_archive_items&pk%5BID%5D=3\', event);'},
                 // {'GLOBAL_ICON':'adm-menu-delete','TEXT':'Удалить','ONCLICK':'tbl_perfmon_table8d66d1619cdc87b2d4e16783daf23959.GetAdminList(\'/bitrix/admin/perfmon_table.php?ID=3&action_button=delete&lang=ru&sessid=0e86bba9cd9d0083a562926b5b207773&table_name=my_archive_items&pk%5BID%5D=3\');'}];
             ], [
@@ -174,5 +177,5 @@ $APPLICATION->IncludeComponent(
 );
 
 
-echo "<pre>", var_dump($arResult), "</pre>";
+//echo "<pre>", var_dump($arResult), "</pre>";
 ?>
