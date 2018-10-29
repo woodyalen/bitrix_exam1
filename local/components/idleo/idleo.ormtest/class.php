@@ -1,10 +1,15 @@
 <?
+use \Bitrix\Main;
+use Bitrix\Main\Entity;
 use Bitrix\Main\Entity\Base;
 include('classes/archiveItem.php');
 include('initial.php');
 
 class idleo_ormtest extends CBitrixComponent
 {
+    
+    
+
     /**
      * Создает таблицу в базе данных, если она еще не существует.
      *
@@ -12,26 +17,32 @@ class idleo_ormtest extends CBitrixComponent
      * @param [type] $dbTableName
      * @return void
      */
-    function installDB($connectionObject, $dbTableName)
+    private function initializeTables($connection, $entity)
     {
-        if (!Application::getConnection($connectionObject) -> isTableExists($dbTableName))
+        if (!$connection -> isTableExists($entity -> getDBTableName()))
         {
-            Base::getInstance('ArchiveItem') ->createDBTable();
+            $entity -> createDBTable();
             return true;
         }
         return false;
+    }
+
+    function getArchiveFiles()
+    {
+
     }
     /**
      *  Функция инициализации компонента
      */
     public function executeComponent()
     {
+        
+        $dbConnection =  \Bitrix\Main\Application::getConnection();
+        $archiveItemEntity = ArchiveItemTable::getEntity();
+
         try{
-            //Пример получения необходимых параметров
-            $connectionObject = ArchiveItemTable::getConnectionName();
-            $dbTableName = Base::getInstance('ArchiveItemTable') -> geDBTableName();
-            
-            if(installDB($connectionObject, $dbTableName))
+
+            if (initializeTables($dbConnection, $archiveItemEntity))
                 $this->includeComponentTemplate();
         }
         catch(SystemException $e){

@@ -18,7 +18,13 @@ class ArchiveFileTable extends Entity\DataManager
         return [
             new Entity\IntegerField('ID', ['primary' => true, 'autocomplete' => true]),
             new Entity\StringField('NAME'),
-            new Entity\stringField('PATH')
+            new Entity\stringField('PATH'),
+            (new Entity\IntegerField('ITEM_ID')),
+            (new Reference(
+                'NAME',
+                ArchiveItemTable::class,
+                Join::on('this.ITEM_ID', 'ref.ID')
+            )) -> configureJoinType('inner')
         ];
     }
 }

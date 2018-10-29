@@ -20,17 +20,8 @@ class ArchiveItemTable extends Entity\DataManager
             new Entity\IntegerField('ID', ['primary' => true, 'autocomplete' => true]),
             // Название
             new Entity\StringField('NAME'),
-            // Файл При типе данных enum нужжно задавать список в параметрах.
-            (new Entity\StringField('FILE_ID')),
-            // Пользователь FIXME: Неуверен в типе поля.
+            // Пользователь 
             new Entity\StringField('USER'),
-            // Создаем зависимость.
-            (new Reference(
-                'FILE',
-                ArchiveFileTable::class,
-                Join::on('this.FILE_ID', 'ID')
-            ))
-            ->configureJoinType('inner')
         ];
     }
 }
